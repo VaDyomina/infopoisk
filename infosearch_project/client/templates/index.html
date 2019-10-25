@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>ВасилЯндекс</title>
+	<!-- favicon --> 
+	<link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+	<!--internal stylesheet-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main.css') }}">
+	<!--third-party stuff-->
+	<script
+			src="https://code.jquery.com/jquery-3.4.1.js"
+			integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+			crossorigin="anonymous"
+	></script>
+	<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"
+	></script>
+	<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"
+	></script>
+</head>
+<body>
+	<header class="page-header container">
+		<h1 class="row justify-content-center">ВасилЯндекс</h1>
+	</header>
+	<main class="container">
+		<p class="main-image-wrapper">
+			<img class="main-image" src="{{url_for('static', filename='img/searcher.jpg')}}" />
+		</p>
+
+		<form action="/search" method="POST" name="form" class="row justify-content-center main-form">
+			<label for="input" class="main-form-label">Что ищем?</label>
+			<input id="input" class="input main-form-input" placeholder="Сюда ввести запрос" name="query" type="text"/>
+
+			<label for="select" class="main-form-label">Как ищем?</label>
+			<select id="select" name="ranker" required>
+				<option value="tf_idf">TF-IDF</option>
+				<option value="bm25">BM25</option>
+				<option value="fasttext">Fasttext</option>
+				<option value="elmo">Elmo</option>
+			</select>
+
+			<input class="btn btn-inverse" type="button" value="Поиск" onclick="search_ajax();"/>
+		</form>
+
+		<p id="search_results" class="row justify-content-center main-answer"></p>
+	</main>
+	<footer class="container page-footer">
+		<small class="row justify-content-center">Василиса Дёмина 2019 &copy</small>
+	</footer>
+
+	<!--internal scripts-->
+	<script src="{{ url_for('static', filename='scripts/search_ajax.js') }}"></script>
+</body>
+</html>
