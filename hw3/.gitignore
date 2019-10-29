@@ -1,0 +1,8 @@
+env
+.idea
+
+external/fasttext/*
+!external/fasttext/README.md
+
+external/simple_elmo/*
+!external/simple_elmo/README.md
